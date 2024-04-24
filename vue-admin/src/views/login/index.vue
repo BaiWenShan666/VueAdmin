@@ -16,7 +16,7 @@
         <el-form-item>
           <el-input placeholder="password" type="password">
             <i slot="prefix" class="el-input__icon el-icon-lock" />
-            <i slot="suffix" class="el-input__icon el-icon-view" />
+            <i slot="suffix" class="el-input__icon el-icon-view show-pwd" />
           </el-input>
         </el-form-item>
         <!-- button -->
@@ -30,15 +30,82 @@
 
 <script>
 export default {
-  components: {},
   data() {
     return {};
   },
-  computed: {},
   created() {},
-  mounted() {},
   methods: {},
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+// 背景的颜色
+$bg: #2d3a4b;
+// 标题文件的颜色
+$dark_gray: #889aa4;
+// 输入框文字的颜色
+$light_gray: #eee;
+// 光标的颜色
+$cursor: #fff;
+
+.login-wrapper {
+  width: 100%;
+  min-height: 100%;
+  background-color: $bg;
+  overflow: hidden;
+
+  .login-wrapper-form {
+    width: 520px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 160px 35px 0;
+    overflow: hidden;
+
+    /*修改ui框架样式不生效时，可以使用样式穿透来提高优先级  scss中 ::v-deep */
+    ::v-deep .el-form-item {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      background: rgba(0, 0, 0, 0.1);
+      color: #454545;
+
+      ::v-deep .el-input {
+        display: inline-block;
+        height: 47px;
+        width: 85%;
+
+        input {
+          background: transparent;
+          outline: none;
+          border: 0px;
+          -webkit-appearance: none;
+          border-radius: 0px;
+          padding: 12px 5px 12px 15px;
+          color: $light_gray;
+          height: 47px;
+          caret-color: $cursor; //设置光标颜色
+        }
+      }
+    }
+
+    .title-container {
+      position: relative;
+      .title {
+        font-size: 26px;
+        color: $light_gray;
+        margin: 0px auto 40px auto;
+        text-align: center;
+        font-weight: bold;
+      }
+    }
+    .show-pwd {
+      position: absolute;
+      right: 10px;
+      top: 2px;
+      font-size: 16px;
+      color: $dark_gray;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+}
+</style>

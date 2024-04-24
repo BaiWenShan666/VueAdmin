@@ -9,6 +9,9 @@ import store from "./store";
 // 注册ElementUI
 Vue.use(ElementUI);
 
+// 导入全局公共样式
+import "./styles/index.scss";
+
 Vue.config.productionTip = false;
 
 new Vue({
