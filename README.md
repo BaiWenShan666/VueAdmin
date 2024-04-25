@@ -7,6 +7,8 @@
 
 3、git切换分支：git checkout  要切换的分支名
 
+​	git checkout -b 分支名（可直接创建新分支并切换到新创建的的分支）
+
 4、查看分支是否切换成功：git branch -v
 
 5、git提交github仓库：

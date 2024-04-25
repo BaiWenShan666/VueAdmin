@@ -31,11 +31,14 @@
           <el-input
             v-model="loginForm.password"
             placeholder="password"
-            type="password"
+            :type="passwordType"
           />
           <!-- svg内置图标展示 -->
           <span class="show-pwd">
-            <svg-icon icon="eye" />
+            <svg-icon
+              :icon="passwordType == 'password' ? 'eye' : 'eye-open'"
+              @click.native="onChangePwdType"
+            />
           </span>
         </el-form-item>
         <!-- button -->
@@ -73,10 +76,23 @@ export default {
         // 密码的自定义验证规则
         password: [{ validator: validatePassword, trigger: "blur" }],
       },
+      //定义密码框的type类型 type如果为text , 我们的密码则是明文状态 , type为password 密码则是密文状态
+      passwordType: "password",
     };
   },
   created() {},
-  methods: {},
+  methods: {
+    // 切换密码的状态
+    onChangePwdType() {
+      // 当密码框的状态为password时就让密码框的状态为文本框，当密码框的状态不等于password时就密码框的状态为密码框
+      this.passwordType = this.passwordType == "password" ? "text" : "password";
+      // if (this.passwordType == "password") {
+      //   this.passwordType = "text";
+      // } else {
+      //   this.passwordType = "password";
+      // }
+    },
+  },
 };
 </script>
 
