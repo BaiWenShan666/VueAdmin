@@ -9,22 +9,30 @@
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
-      <el-form>
+      <el-form :model="loginForm" :rules="loginRules">
         <!-- username -->
-        <el-form-item>
+        <el-form-item prop="username">
           <!-- svg内置图标展示 -->
           <span class="svg-container">
             <svg-icon icon="user" />
           </span>
-          <el-input placeholder="username" type="text" />
+          <el-input
+            v-model="loginForm.username"
+            placeholder="username"
+            type="text"
+          />
         </el-form-item>
         <!-- password -->
-        <el-form-item>
+        <el-form-item prop="password">
           <!-- svg内置图标展示 -->
           <span class="svg-container">
             <svg-icon icon="password" />
           </span>
-          <el-input placeholder="password" type="password" />
+          <el-input
+            v-model="loginForm.password"
+            placeholder="password"
+            type="password"
+          />
           <!-- svg内置图标展示 -->
           <span class="show-pwd">
             <svg-icon icon="eye" />
@@ -40,13 +48,32 @@
 </template>
 
 <script>
+// 密码框自定义的验证规则
+import { validatePassword } from "./rules";
 // 引入svg外部图标组件
 // import SvgIcon from "../../components/SvgIcon/index.vue";
 export default {
   // 注册svg外部图标组件
   // components: { SvgIcon },
   data() {
-    return {};
+    return {
+      // 保存的是输入的username 和 password
+      loginForm: {
+        // username
+        username: "super-admin",
+        // password
+        password: "123456",
+      },
+      // 定义表单验证规则
+      loginRules: {
+        // 用户名的验证规则
+        username: [
+          { required: true, message: "用户名不能为空", trigger: "blur" },
+        ],
+        // 密码的自定义验证规则
+        password: [{ validator: validatePassword, trigger: "blur" }],
+      },
+    };
   },
   created() {},
   methods: {},
@@ -54,60 +81,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-/*
-    1、在vue项目中使用element-ui的内置图标
-      <span class="svg-container">
-        <i class="el-icon-phone"></i>
-      </span>
-
-    2、在vue项目中使用阿里巴巴矢量图标库的图标
-
-    3、使用svg图标方案
-      3.1、使用外部svg图标
-        使用在线的地址引入的图标
-      3.2、使用内部svg图标
-        svg图标下载到本地了，在项目中使用本地svg图标
-
-        核心思路：
-          1.1、创建一个svgIcon组件
-          1.2、通过svgIcon组件可以加载外部的svg图标以及项目内的svg图标
-          1.3、封装一个验证方法来判断当前图标是外部图标还是项目内的图标
-            export function isExternal(path) {
-               return /^(https?:|mailto:|tel:)/.test(path);
-            }
-
-          1.4、在svgIocn组件通过isExteranl来接受icon，进行验证
-          1.5、创建外部图标展示方式
-            <div
-              v-if="isExternal"
-              class="svg-external-icon svg-icon"
-             :style="styleExternalIcon"
-             :class="className"></div>
-          1.6、创建内部图标展示方式
-          <svg v-else class="svg-icon" :class="className" aria-hidden="true">
-            <use :xlink:href="iconName" />
-          </svg>
-          1.7、定义svg图标样式
-          .svg-icon {
-                width: 1em;
-                height: 1em;
-                vertical-align: -0.15em;
-                fill: currentColor;
-                overflow: hidden;
-              }
-
-          .svg-external-icon {
-                background-color: currentColor;
-                mask-size: cover !important;
-                display: inline-block;
-              }
-
-      1.8、在src目录下创建icons文件夹，在该文件夹内导入svg的所有图标
-      1.9、在icons目录下创建index.js
-      1.10、加载svg目录下的所有svg图标，并将svgIcon图标注册为全局组件
-      1.11、在vue.config.js里面配置
-*/
-
 // 背景的颜色
 $bg: #2d3a4b;
 // 标题文件的颜色
