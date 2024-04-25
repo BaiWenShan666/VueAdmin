@@ -12,6 +12,9 @@ Vue.use(ElementUI);
 // 导入全局公共样式
 import "./styles/index.scss";
 
+// 导入svgIcon
+import "./icons"
+
 Vue.config.productionTip = false;
 
 new Vue({
