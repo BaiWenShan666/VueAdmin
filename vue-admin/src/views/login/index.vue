@@ -1,6 +1,7 @@
 <template>
   <div class="login-wrapper">
     <div class="login-wrapper-form">
+      <SvgIcon icon="https://res.lgdsunday.club/user.svg" />
       <!-- title -->
       <div class="title-container">
         <h3 class="title">用户登录</h3>
@@ -9,7 +10,9 @@
         <!-- username -->
         <el-form-item>
           <el-input placeholder="username" type="text">
-            <i slot="prefix" class="el-input__icon el-icon-user-solid" />
+            <!-- <span class="svg-container">
+              <svg-icon icon="https://res.lgdsunday.club/user.svg" />
+            </span> -->
           </el-input>
         </el-form-item>
         <!-- password -->
@@ -29,7 +32,9 @@
 </template>
 
 <script>
+import SvgIcon from "../../components/SvgIcon/index.vue";
 export default {
+  components: { SvgIcon },
   data() {
     return {};
   },
@@ -39,6 +44,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
+/*
+    1、在vue项目中使用element-ui的内置图标
+      <span class="svg-container">
+        <i class="el-icon-phone"></i>
+      </span>
+
+    2、在vue项目中使用阿里巴巴矢量图标库的图标
+
+    3、使用svg图标方案
+      3.1、使用外部svg图标
+        使用在线的地址引入的图标
+      3.2、使用内部svg图标
+        svg图标下载到本地了，在项目中使用本地svg图标
+*/
+
 // 背景的颜色
 $bg: #2d3a4b;
 // 标题文件的颜色
@@ -87,6 +107,12 @@ $cursor: #fff;
       }
     }
 
+    .svg-container {
+      padding: 6px 5px 6px 15px;
+      color: $dark_gray;
+      vertical-align: middle;
+      display: inline-block;
+    }
     .title-container {
       position: relative;
       .title {
