@@ -13,7 +13,10 @@ Vue.use(ElementUI);
 import "./styles/index.scss";
 
 // 导入svgIcon
-import "./icons"
+import "./icons";
+
+// 导入权限文件
+import "./permission";
 
 Vue.config.productionTip = false;
 

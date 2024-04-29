@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Login from "@/views/login";
+import Layout from "@/layout";
 
 Vue.use(VueRouter);
-
 
 /**  
   路由分为两种：
@@ -12,8 +12,6 @@ Vue.use(VueRouter);
         另一种是动态路由：
             根据用户角色权限从后台返回出来的路由，我们称之为动态路由
  **/
-
-
 
 /*
  * 公开路由表
@@ -24,6 +22,12 @@ const publicRoutes = [
     path: "/login",
     name: "login",
     component: Login,
+  },
+  // layout
+  {
+    path: "/",
+    name: "layout",
+    component: Layout,
   },
 ];
 

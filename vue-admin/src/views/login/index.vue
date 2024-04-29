@@ -1,10 +1,6 @@
 <template>
   <div class="login-wrapper">
     <div class="login-wrapper-form">
-      <!-- svg外部图标展示 -->
-      <!-- <SvgIcon icon="https://res.lgdsunday.club/user.svg" /> -->
-      <!-- svg内置图标展示 -->
-      <!-- <svg-icon icon="user" /> -->
       <!-- title -->
       <div class="title-container">
         <h3 class="title">用户登录</h3>
@@ -43,7 +39,9 @@
         </el-form-item>
         <!-- button -->
         <el-form-item>
-          <el-button type="primary" style="width: 100%">登录</el-button>
+          <el-button type="primary" style="width: 100%" @click="handleLogin"
+            >登录</el-button
+          >
         </el-form-item>
       </el-form>
     </div>
@@ -53,11 +51,7 @@
 <script>
 // 密码框自定义的验证规则
 import { validatePassword } from "./rules";
-// 引入svg外部图标组件
-// import SvgIcon from "../../components/SvgIcon/index.vue";
 export default {
-  // 注册svg外部图标组件
-  // components: { SvgIcon },
   data() {
     return {
       // 保存的是输入的username 和 password
@@ -91,6 +85,12 @@ export default {
       // } else {
       //   this.passwordType = "password";
       // }
+    },
+    // 登录方法
+    async handleLogin() {
+      await this.$store.dispatch("user/login", this.loginForm);
+      // 跳转layout页面
+      this.$router.push("/");
     },
   },
 };
