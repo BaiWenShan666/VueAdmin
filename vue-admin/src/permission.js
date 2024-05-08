@@ -30,8 +30,9 @@ router.beforeEach(async (to, from, next) => {
             if (!store.getters.hasUserInfo) {
                 // 触发获取用户信息的方法
                 await store.dispatch("user/getUserInfo");
+                next();
             }
-            next();
+
         }
     } else {
         // 未登录  没有token的情况下，可以进入白名单
