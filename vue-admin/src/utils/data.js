@@ -8,7 +8,7 @@ export const userInfoData = {
         id: 0,
         username: 'super-admin',
         title: '超级管理员',
-        avatar: 'https://avatars.githubusercontent.com/u/96646361?s=40&v=4',
+        avatar: 'https://res.lgdsunday.club/my-avatar.jpg',
         permission: {
             menus: [
                 'userManage',
