@@ -1,11 +1,11 @@
 // 导入axios
 import axios from "axios";
-
 // 导入vuex
 import store from "../store/index.js";
-
 // 导入element-ui的Message组件
 import { Message } from "element-ui";
+// 引入超时时间
+import { isCheckTimeout } from "./auth";
 
 // 创建axios实力对象
 const request = axios.create({
@@ -19,13 +19,16 @@ const request = axios.create({
 request.interceptors.request.use((config) => {
   // 通过请求头发送token给后台
   if (store.getters.token) {
+    if (isCheckTimeout()) {
+      // 登出操作
+      store.dispatch("user/logout");
+      return Promise.reject(new Error("token失效"))
+    }
     // console.log("request=>", store.getters.token);
     config.headers.Authorization = `Bearer${store.getters.token}`
   }
-  // Do something before request is sent
   return config;
 }, (error) => {
-  // Do something with request error
   return Promise.reject(error);
 });
 
@@ -41,17 +44,15 @@ request.interceptors.response.use((response) => {
     Message.error(message); // 提示错误信息
     return Promise.reject(new Error(message))
   }
-  // Do something with response data
   return response;
 }, (error) => {
   // token过期处理
-  // if (error.response && error.response.data && error.response.data.code == 401) {
-  //   // 退出登录
-  //   // store.dispatch("user/logout");
-  // };
+  if (error.response && error.response.data && error.response.data.code === 401) {
+    // 退出登录
+    store.dispatch("user/logout");
+  };
   // 提示错误信息
   Message.error(error.message);
-  // Do something with response error
   return Promise.reject(error);
 });
 
