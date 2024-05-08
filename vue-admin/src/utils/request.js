@@ -31,7 +31,8 @@ request.interceptors.request.use((config) => {
 
 // 创建响应拦截器
 request.interceptors.response.use((response) => {
-  const { success, message, data, code } = response.data;
+  console.log("request", response);
+  const { code, data, message, success } = response.data;
   // 要根据success的成功与否决定下面的操作
   if (success) {
     return data

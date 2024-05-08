@@ -1,5 +1,5 @@
 // 导入api文件
-import { doLogin } from '@/api/sys';
+import { doLogin, doGetUserInfo } from '@/api/sys';
 // 导入MD5密码加密
 import md5 from 'md5';
 // 导入路由文件
@@ -7,18 +7,23 @@ import router from '@/router';
 // 导入本地存储文件
 import { setItem, getItem, removeItem, clear } from "@/utils/storage";
 // 导入常量
-import { TOKEN } from "@/constant";
+import { TOKEN, USERINFO } from "@/constant";
 
 export default {
     namespaced: true,
     state: () => ({
         token: getItem(TOKEN) || "",
+        userInfo: getItem(USERINFO) || ""
     }),
     mutations: {
         setToken(state, token) {
             state.token = token;
             setItem(TOKEN, token)
         },
+        setUserInfo(state, userInfo) {
+            state.userInfo = userInfo;
+            setItem(USERINFO, userInfo);
+        }
     },
     actions: {
         // 登录动作
@@ -41,6 +46,13 @@ export default {
                         reject(error);
                     })
             })
+        },
+        // 获取用户信息
+        async getUserInfo({ commit }) {
+            const res = await doGetUserInfo();
+            console.log("获取用户信息=>", res);
+            commit("setUserInfo", res);
+            return res;
         },
     }
 }

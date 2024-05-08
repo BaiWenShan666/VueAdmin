@@ -50,14 +50,16 @@
 
 3、git 切换分支：git checkout 要切换的分支名
 
-​ git checkout -b 分支名（可直接创建新分支并切换到新创建的的分支）
+ git checkout -b 分支名（可直接创建新分支并切换到新创建的的分支）
 
 4、查看分支是否切换成功：git branch -v
 
 5、git 提交 github 仓库：
 
-​ git add .
+ git add .
 
-​ git commit -m "开发内容的描述"
+ git commit -m "开发内容的描述"
 
-​ git push origin 要提交的分支名
+ git push origin 要提交的分支名
+
+6、克隆github 仓库分支代码：git clone -b 分支名 + github 仓库地址（例如：git clone -b 3-02创建基于Layout的基础架构 https://github.com/BaiWenShan666/VueAdmin.git）

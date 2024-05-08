@@ -8,9 +8,21 @@
 //  */
 // export const doLogin = (data) => {
 //   return request({
-//     url: "/sys/login",
+//     url: `/sys/login`,
 //     method: "POST",
 //     data
+//   })
+// };
+
+/**
+ *
+ * 封装获取用户信息api接口
+ *
+ * ***/
+// export const doGetUserInfo = () => {
+//   return request({
+//     url: `/sys/profile`,
+//     method: "GET"
 //   })
 // };
 
@@ -24,6 +36,17 @@ import { userInfoData } from '@/utils/data.js'
  * @returns 
  */
 export const doLogin = () => {
+  return new Promise((resolve, reject) => {
+    resolve(userInfoData)
+  })
+};
+
+/**
+ *
+ * 封装获取用户信息api接口
+ *
+ * ***/
+export const doGetUserInfo = () => {
   return new Promise((resolve, reject) => {
     resolve(userInfoData)
   })
