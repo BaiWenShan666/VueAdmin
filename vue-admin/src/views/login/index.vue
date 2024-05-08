@@ -90,7 +90,7 @@ export default {
     async handleLogin() {
       await this.$store.dispatch("user/login", this.loginForm);
       // 跳转layout页面
-      this.$router.push("/");
+      // this.$router.push("/");
     },
   },
 };

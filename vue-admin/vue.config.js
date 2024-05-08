@@ -33,7 +33,7 @@ module.exports = {
     // 配置主机名
     host: "localhost",
     // 配置端口号
-    port: 8080,
+    port: 7777,
     // 配置https协议
     https: false,
     // 配置跨域
@@ -52,5 +52,6 @@ module.exports = {
     }
   },
   // 关闭eslint
-  lintOnSave: false
+  lintOnSave: false,
+
 }

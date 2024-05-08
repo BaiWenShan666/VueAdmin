@@ -18,11 +18,12 @@ export default {
         setToken(state, token) {
             state.token = token;
             setItem(TOKEN, token)
-        }
+        },
     },
     actions: {
         // 登录动作
         login({ commit }, loginForm) {
+            // console.log("loginForm=>", loginForm);
             const { username, password } = loginForm;
             return new Promise((resolve, reject) => {
                 doLogin({
@@ -31,17 +32,15 @@ export default {
                 })
                     .then(res => {
                         // console.log("res=>", res);
-                        // console.log("res.token=>", res.token);
                         commit("setToken", res.token);
                         resolve();
                         // 跳转首页 注意：此处是解决在登录页面写跳转时报错以及跳转失败问题
-                        // router.push("/");
+                        router.push("/");
                     })
                     .catch(error => {
-                        console.log("error=>", error);
-                        reject()
+                        reject(error);
                     })
             })
-        }
+        },
     }
 }

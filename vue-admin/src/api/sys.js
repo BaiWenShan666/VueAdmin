@@ -15,7 +15,6 @@
 // };
 
 
-
 // 上面封装的api接口登录失败时用这个方法
 import { userInfoData } from '@/utils/data.js'
 
@@ -28,4 +27,4 @@ export const doLogin = () => {
   return new Promise((resolve, reject) => {
     resolve(userInfoData)
   })
-}
+};

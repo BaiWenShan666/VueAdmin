@@ -17,13 +17,13 @@ Vue.use(VueRouter);
  * 公开路由表
  */
 const publicRoutes = [
-  // 登录
+  // 登录页面
   {
     path: "/login",
     name: "login",
     component: Login,
   },
-  // layout
+  // layout页面
   {
     path: "/",
     name: "layout",
@@ -32,8 +32,6 @@ const publicRoutes = [
 ];
 
 const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
   routes: publicRoutes,
 });
 

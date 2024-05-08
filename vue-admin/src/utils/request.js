@@ -1,6 +1,9 @@
 // 导入axios
 import axios from "axios";
 
+// 导入vuex
+import store from "../store/index.js";
+
 // 导入element-ui的Message组件
 import { Message } from "element-ui";
 
@@ -14,13 +17,10 @@ const request = axios.create({
 
 // 创建请求拦截器
 request.interceptors.request.use((config) => {
-  // 通过请求拦截器，发送token给后台
+  // 通过请求头发送token给后台
   if (store.getters.token) {
-    // if (isCheckTimeout()) {
-    //   store.dispatch("user/logout");
-    //   return Promise.reject(new Error("token失效"))
-    // }
-    config.headers.Authorization = `Bearer ${store.getters.token}`
+    // console.log("request=>", store.getters.token);
+    config.headers.Authorization = `Bearer${store.getters.token}`
   }
   // Do something before request is sent
   return config;
