@@ -36,7 +36,7 @@ export default {
   },
   created() {},
   methods: {
-    // 退出登录
+    // 触发actions里面定义的退出登录方法
     async logout() {
       await this.$store.dispatch("user/logout");
     },

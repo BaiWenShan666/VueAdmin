@@ -27,12 +27,194 @@ const publicRoutes = [
   {
     path: "/",
     name: "layout",
+    redirect: "/profile",
     component: Layout,
+    children: [
+      // 个人中心页面
+      {
+        path: "/profile",
+        name: "profile",
+        component: () => import("@/views/profile")
+      },
+      // 404页面
+      {
+        path: "/404",
+        name: "404",
+        component: () => import("@/views/error-page/404.vue")
+      },
+      // 401页面
+      {
+        path: "/401",
+        name: "401",
+        component: () => import("@/views/error-page/401.vue")
+      },
+
+      /**路由没有权限的话可以写在这里**/
+      // // 员工管理页面
+      // {
+      //   path: "/user/manage",
+      //   name: "userManage",
+      //   component: () => import("@/views/user-manage")
+      // },
+      // // 角色列表页面
+      // {
+      //   path: "/user/role",
+      //   name: "userRole",
+      //   component: () => import("@/views/role-list")
+      // },
+      // // 权限列表页面
+      // {
+      //   path: "/user/permission",
+      //   name: "userPermission",
+      //   component: () => import("@/views/permission-list")
+      // },
+      // // 文章排名
+      // {
+      //   path: "/article/ranking",
+      //   name: "articleRanking",
+      //   component: () => import("@/views/article-ranking")
+      // },
+      // // 创建文章
+      // {
+      //   path: "/article/create",
+      //   name: "articleCreate",
+      //   component: () => import("@/views/article-create")
+      // },
+    ]
   },
+  /*
+   * 路由有权限放到私有路由表（要是路由没有权限的话也可以写在这里） 
+   */
+  // // 用户
+  // {
+  //   path: "/user",
+  //   name: "user",
+  //   redirect: "/user/manage",
+  //   component: Layout,
+  //   children: [
+  //     // 员工管理页面
+  //     {
+  //       path: "/user/manage",
+  //       name: "userManage",
+  //       component: () => import("@/views/user-manage")
+  //     },
+  //     // 角色列表页面
+  //     {
+  //       path: "/user/role",
+  //       name: "userRole",
+  //       component: () => import("@/views/role-list")
+  //     },
+  //     // 权限列表页面
+  //     {
+  //       path: "/user/permission",
+  //       name: "userPermission",
+  //       component: () => import("@/views/permission-list")
+  //     },
+  //     // 用户详情
+  //     {
+  //       path: "/user/info/:id",
+  //       name: "userInfo",
+  //       component: () => import("@/views/user-info")
+  //     }
+  //   ]
+  // },
+  // // 文章
+  // {
+  //   path: "/article",
+  //   name: "article",
+  //   redirect: "/article/ranking",
+  //   component: Layout,
+  //   children: [
+  //     // 文章排名
+  //     {
+  //       path: "/article/ranking",
+  //       name: "articleRanking",
+  //       component: () => import("@/views/article-ranking")
+  //     },
+  //     // 创建文章
+  //     {
+  //       path: "/article/create",
+  //       name: "articleCreate",
+  //       component: () => import("@/views/article-create")
+  //     },
+  //     // 文章详情
+  //     {
+  //       path: "/article/:id",
+  //       name: "article",
+  //       component: () => import("@/views/article-detail")
+  //     },
+  //   ]
+  // }
 ];
 
+/**
+ * 私有路由表
+ */
+const privateRoutes = [
+  // 用户
+  {
+    path: "/user",
+    name: "user",
+    redirect: "/user/manage",
+    component: Layout,
+    children: [
+      // 员工管理页面
+      {
+        path: "/user/manage",
+        name: "userManage",
+        component: () => import("@/views/user-manage")
+      },
+      // 角色列表页面
+      {
+        path: "/user/role",
+        name: "userRole",
+        component: () => import("@/views/role-list")
+      },
+      // 权限列表页面
+      {
+        path: "/user/permission",
+        name: "userPermission",
+        component: () => import("@/views/permission-list")
+      },
+      // 用户详情
+      {
+        path: "/user/info/:id",
+        name: "userInfo",
+        component: () => import("@/views/user-info")
+      },
+    ]
+  },
+  // 文章
+  {
+    path: "/article",
+    name: "article",
+    redirect: "/article/ranking",
+    component: Layout,
+    children: [
+      // 文章排名
+      {
+        path: "/article/ranking",
+        name: "articleRanking",
+        component: () => import("@/views/article-ranking")
+      },
+      // 创建文章
+      {
+        path: "/article/create",
+        name: "articleCreate",
+        component: () => import("@/views/article-create")
+      },
+      // 文章详情
+      {
+        path: "/article/:id",
+        name: "article",
+        component: () => import("@/views/article-detail")
+      },
+    ]
+  }
+]
+
 const router = new VueRouter({
-  routes: publicRoutes,
+  routes: [...publicRoutes, ...privateRoutes],
 });
 
 export default router;

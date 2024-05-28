@@ -1,11 +1,7 @@
 <template>
   <div class="app-wrapper">
     <!-- 左侧 menu -->
-    <Sidebar
-      id="guide-sidebar"
-      class="sidebar-container"
-      style="background: #304156"
-    />
+    <Sidebar id="guide-sidebar" />
     <div class="main-container">
       <div class="fixed-header">
         <!-- 顶部的 navbar -->
@@ -20,13 +16,9 @@
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
 import AppMain from "./components/AppMain";
-// import variables from "@/styles/variables.scss";
-// :style="{ backgroundColor: variables.menuBg }"
 export default {
   data() {
-    return {
-      // variables,
-    };
+    return {};
   },
   created() {},
   methods: {},
@@ -47,7 +39,6 @@ export default {
   height: 100%;
   width: 100%;
 }
-
 .fixed-header {
   position: fixed;
   top: 0;

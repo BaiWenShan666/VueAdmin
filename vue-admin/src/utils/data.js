@@ -28,5 +28,3 @@ export const userInfoData = {
     },
     message: '获取资料成功'
 };
-
-

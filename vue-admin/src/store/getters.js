@@ -3,5 +3,6 @@ export const getters = {
     hasUserInfo: state => {
         return state.user.userInfo
     },
-    userInfo: state => state.user.userInfo
+    userInfo: state => state.user.userInfo,
+
 }
